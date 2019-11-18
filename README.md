@@ -6,9 +6,9 @@ The edits include (or, will include) a new `/subcellular` directory where we wil
 ```
 ~/git/PhysiCell_MaBoSS/subcellular/MaBoSS/engine/src$ 
 ```
-. additions to `class Molecular` in `/core/PhysiCell_phenotype.h` with the MaBoSS/boolean network model for a cell.
-. additions `/core/PhysiCell_cell_container.cpp` where the subcellular model is solved.
-. additions `/custom_modules/<custom_code>.cpp` where the subcellular model is referenced by each cell.
+* additions to `class Molecular` in `/core/PhysiCell_phenotype.h` with the MaBoSS/boolean network model for a cell.
+* additions `/core/PhysiCell_cell_container.cpp` where the subcellular model is solved.
+* additions `/custom_modules/<custom_code>.cpp` where the subcellular model is referenced by each cell.
 
 We start off with a very simple test case consisting of 3 cells that are motile and travel horizontally.
 ```
