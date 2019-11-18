@@ -10,7 +10,7 @@ The edits include (or, will include) a new `/subcellular` directory where we wil
 * additions `/core/PhysiCell_cell_container.cpp` where the subcellular model is solved.
 * additions `/custom_modules/<custom_code>.cpp` where the subcellular model is referenced by each cell.
 
-We start off with a very simple test case consisting of 3 cells that are motile and travel horizontally.
+For an initial, functional test case, we define 3 cells that are motile and travel horizontally.
 ```
 ~/git/PhysiCell_MaBoSS$ make
 ...
