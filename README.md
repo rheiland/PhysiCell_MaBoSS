@@ -10,6 +10,38 @@ The edits include (or, will include) a new `/subcellular` directory where we wil
 * additions `/core/PhysiCell_cell_container.cpp` where the subcellular model is solved.
 * additions `/custom_modules/<custom_code>.cpp` where the subcellular model is referenced by each cell.
 
+## Building
+
+### macOS
+
+On macOS, I build using a brew-install g++ (which is OpenMP-enabled, which PhysiCell requires) as follows:
+```
+~/git/PhysiCell_MaBoSS/subcellular/MaBoSS/engine/src$ make -f Makefile.maboss 
+g++-9 -O2 -Wall -DMAXNODES=64 -std=c++11   -c MaBoSS.cc -o MaBoSS.o
+MaBoSS.cc: In function 'int main(int, char**)':
+MaBoSS.cc:302:23: warning: 'start_time' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  302 |     runconfig->display(network, start_time, end_time, mabest, *output_run);
+      |     ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MaBoSS.cc:302:23: warning: 'end_time' may be used uninitialized in this function [-Wmaybe-uninitialized]
+g++-9 -O2 -Wall -DMAXNODES=64 -std=c++11   -c MaBEstEngine.cc -o MaBEstEngine.o
+g++-9 -O2 -Wall -DMAXNODES=64 -std=c++11   -c Cumulator.cc -o Cumulator.o
+g++-9 -O2 -Wall -DMAXNODES=64 -std=c++11   -c ProbaDist.cc -o ProbaDist.o
+g++-9 -O2 -Wall -DMAXNODES=64 -std=c++11   -c BooleanNetwork.cc -o BooleanNetwork.o
+flex -t BooleanGrammar.l | sed -e 's/yy/CTBNDL/g' -e 's/register //g' > lex.CTBNDL.cc
+bison -v BooleanGrammar.y
+sed -e 's/yy/CTBNDL/g' -e 's/register //g' BooleanGrammar.tab.c > BooleanGrammar.cc
+g++-9 -O2 -Wall -DMAXNODES=64 -std=c++11   -c BooleanGrammar.cc -o BooleanGrammar.o
+flex -t RunConfigGrammar.l | sed -e 's/yy/RC/g' -e 's/register //g' > lex.RC.cc
+bison -v RunConfigGrammar.y
+sed -e 's/yy/RC/g' -e 's/register //g' RunConfigGrammar.tab.c > RunConfigGrammar.cc
+g++-9 -O2 -Wall -DMAXNODES=64 -std=c++11   -c RunConfigGrammar.cc -o RunConfigGrammar.o
+g++-9 -O2 -Wall -DMAXNODES=64 -std=c++11   -c RunConfig.cc -o RunConfig.o
+g++-9 -O2 -Wall -DMAXNODES=64 -std=c++11   -c LogicalExprGen.cc -o LogicalExprGen.o
+g++-9 -o MaBoSS MaBoSS.o MaBEstEngine.o Cumulator.o ProbaDist.o BooleanNetwork.o BooleanGrammar.o RunConfigGrammar.o RunConfig.o LogicalExprGen.o -lpthread
+~/git/PhysiCell_MaBoSS/subcellular/MaBoSS/engine/src$
+```
+### Windows/MinGW
+
 On Windows/MinGW, I build MaBoSS in a Command Prompt shell:
 ```
 C:\Users\heiland\git\PhysiCell_MaBoSS\subcellular\MaBoSS\engine\src>make
