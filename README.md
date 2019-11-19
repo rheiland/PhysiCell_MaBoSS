@@ -73,8 +73,10 @@ make[1]: Leaving directory `/c/Users/heiland/git/PhysiCell_MaBoSS/subcellular/Ma
 C:\Users\heiland\git\PhysiCell_MaBoSS\subcellular\MaBoSS\engine\src>
 ```
 
+## PhysiCell 
+We have not yet added the functionality of MaBoSS into PhysiCell, only commented out "hooks" (rf. bullets at the top of this README). 
 
-Currently, the PhysiCell "model" defined in `/custom_modules/custom_bn*` is a simple functional test case of just 3 cells that are motile and travel horizontally. It is what we used for an earlier SBML (of ODEs) subcellular model.
+The basic PhysiCell "model" defined in `/custom_modules/custom_bn*` is a simple functional test case of just 3 cells that are motile and travel horizontally. It is what we used for an earlier SBML (of ODEs) subcellular model.
 ```
 ~/git/PhysiCell_MaBoSS$ make
 ...
