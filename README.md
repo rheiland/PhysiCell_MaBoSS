@@ -10,6 +10,10 @@ The edits include (or, will include) a new `/subcellular` directory where we wil
 * additions `/core/PhysiCell_cell_container.cpp` where the subcellular model is solved.
 * additions `/custom_modules/<custom_code>.cpp` where the subcellular model is referenced by each cell.
 
+## Developers
+
+If you plan to develop code for this repo: fork it, make edits in the `dev` branch, and submit pull requests to `dev`.
+
 ## Building MaBoSS
 
 ### macOS
